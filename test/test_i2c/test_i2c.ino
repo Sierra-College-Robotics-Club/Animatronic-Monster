@@ -31,13 +31,13 @@ void loop()
   }
   digitalWrite(LED_PIN, !digitalRead(LED_PIN));
   if ((x & 1)==0){
-    Serial.print("Patrick doesnt like potatoes");
+    Serial.println("Patrick doesnt like potatoes");
   }
   if ((x & 2)==0){
-    Serial.print("Patrick hates potatoes");
+    Serial.println("Patrick hates potatoes");
   }
    if ((x & 4)==0){
-    Serial.print("Patrick might like potatoes");
+    Serial.println("Patrick might like potatoes");
    }
   delay(500);
 }
