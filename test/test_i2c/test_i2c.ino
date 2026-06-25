@@ -33,5 +33,8 @@ void loop()
   if ((x & 1)==0){
     Serial.print("Patrick doesnt like potatoes");
   }
+  if ((x & 2)==0){
+    Serial.print("Patrick hates potatoes");
+  }
   delay(500);
 }
