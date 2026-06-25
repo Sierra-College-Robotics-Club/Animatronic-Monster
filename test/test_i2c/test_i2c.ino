@@ -30,6 +30,8 @@ void loop()
     Serial.printf("value = %d\n",x);
   }
   digitalWrite(LED_PIN, !digitalRead(LED_PIN));
-
+  if ((x & 1)==0){
+    Serial.print("Patrick doesnt like potatoes");
+  }
   delay(500);
 }
