@@ -18,7 +18,7 @@ while(True):
         x=0
     #print("high")
     stepPin.value(1)
-    time.sleep(.001)
+    time.sleep(.01)
     #print("low")
     stepPin.value(0)
-    time.sleep(.001)
+    time.sleep(.01)
