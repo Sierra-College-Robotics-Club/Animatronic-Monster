@@ -23,7 +23,7 @@ void loop()
   Wire.write(x);              // sends one byte  
   Wire.endTransmission();    // stop transmitting
   Serial.printf("sent");
-  delay(500);
+  delay(100);
   Wire.requestFrom(37, 1);
   while (Wire.available()) {
     x=Wire.read();
@@ -31,13 +31,13 @@ void loop()
   }
   digitalWrite(LED_PIN, !digitalRead(LED_PIN));
   if ((x & 1)==0){
-    Serial.println("Patrick doesnt like potatoes");
+    Serial.println("Button 0");
   }
   if ((x & 2)==0){
-    Serial.println("Patrick hates potatoes");
+    Serial.println("Button 1");
   }
    if ((x & 4)==0){
-    Serial.println("Patrick might like potatoes");
+    Serial.println("Button 2");
    }
-  delay(500);
+  delay(100);
 }
