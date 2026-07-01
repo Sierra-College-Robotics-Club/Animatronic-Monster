@@ -1,43 +1,37 @@
-//for testing functionality, uses a larger master device (not the STM31L011)
-#include <Wire.h>
+#include "i2cgpio.h"
 
 #define LED_PIN 33
 
 void setup()
 {
   pinMode(LED_PIN, OUTPUT);
-  pinMode(20, INPUT_PULLUP);
-  pinMode(21, INPUT_PULLUP);
-  Wire.setSDA(20);
-  Wire.setSCL(21);
-  Wire.begin(); // join i2c bus (address optional for master)
+  initI2c();
   Serial.begin(115200);
-  Serial.print("starting");
+  Serial.println("starting");
 }
 
 byte x = 0;
 
 void loop()
 {
-  Wire.beginTransmission(37); // transmit to device 0x25
-  Wire.write(x);              // sends one byte  
-  Wire.endTransmission();    // stop transmitting
-  Serial.printf("sent");
+  setI2cGpioPins(x);
+  Serial.println("sent");
   delay(100);
-  Wire.requestFrom(37, 1);
-  while (Wire.available()) {
-    x=Wire.read();
-    Serial.printf("value = %d\n",x);
-  }
+  x = getI2cGpioPins();
+  Serial.printf("value = %d\n",x);
   digitalWrite(LED_PIN, !digitalRead(LED_PIN));
-  if ((x & 1)==0){
+  if (getI2cGpioPin(0)==0){
     Serial.println("Button 0");
   }
-  if ((x & 2)==0){
+  if (getI2cGpioPin(1)==0){
     Serial.println("Button 1");
   }
-   if ((x & 4)==0){
+  if (getI2cGpioPin(2)==0){
     Serial.println("Button 2");
-   }
+  }
+  //button 3 not installed on hardware, but supported by gpio driver ic
+  if (getI2cGpioPin(3)==0){
+    Serial.println("Button 3");
+  }
   delay(100);
 }
