@@ -8,9 +8,9 @@ void setup() {
 
 void loop() {
   setSpeedUs(10000);
-  moveStepsDir(1000, LOW);
+  moveStepsDir(100, LOW);
   delay(500);
 
-  moveStepsDir(1000, HIGH);
+  moveStepsDir(100, HIGH);
   delay(500);
 }
